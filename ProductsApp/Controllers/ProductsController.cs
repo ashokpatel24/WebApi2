@@ -12,8 +12,26 @@ namespace ProductsApp.Controllers
     {
         Product[] products = new Product[]
         {
-            new Product{Id=, },
-
+            new Product{Id=1,Name="Tomato Soup",Category="Groceries",Price=10 },
+            new Product{Id=2,Name="Yo-yo",Category="Toyes",Price=3.75M },
+            new Product{Id=3,Name="Hammer",Category="Hardware",Price=16.99M }
         };
+
+        public IEnumerable<Product> GetAllProducts()
+        {
+            return products;
+        }
+
+        public IHttpActionResult GetProduct(int id)
+        {
+            var product = products.FirstOrDefault(x => x.Id == id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(product);
+        }
     }
 }
